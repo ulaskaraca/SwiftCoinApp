@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181742C42C391A63000C954D /* CryptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181742C32C391A63000C954D /* CryptoModel.swift */; };
+		181742C62C39422A000C954D /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181742C52C39422A000C954D /* WebService.swift */; };
 		187746472C1B245700D824A5 /* CoinAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187746462C1B245700D824A5 /* CoinAppApp.swift */; };
-		187746492C1B245700D824A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187746482C1B245700D824A5 /* ContentView.swift */; };
+		187746492C1B245700D824A5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187746482C1B245700D824A5 /* MainView.swift */; };
 		1877464B2C1B245800D824A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1877464A2C1B245800D824A5 /* Assets.xcassets */; };
 		1877464E2C1B245800D824A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1877464D2C1B245800D824A5 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181742C32C391A63000C954D /* CryptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModel.swift; sourceTree = "<group>"; };
+		181742C52C39422A000C954D /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		187746432C1B245700D824A5 /* CoinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		187746462C1B245700D824A5 /* CoinAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAppApp.swift; sourceTree = "<group>"; };
-		187746482C1B245700D824A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		187746482C1B245700D824A5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1877464A2C1B245800D824A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1877464D2C1B245800D824A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,6 +36,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		181742BF2C391A0A000C954D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				181742C32C391A63000C954D /* CryptoModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		181742C02C391A12000C954D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				187746482C1B245700D824A5 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		181742C12C391A19000C954D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		181742C22C391A20000C954D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				181742C52C39422A000C954D /* WebService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		1877463A2C1B245700D824A5 = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +86,11 @@
 		187746452C1B245700D824A5 /* CoinApp */ = {
 			isa = PBXGroup;
 			children = (
+				181742BF2C391A0A000C954D /* Model */,
+				181742C02C391A12000C954D /* View */,
+				181742C12C391A19000C954D /* ViewModel */,
+				181742C22C391A20000C954D /* Services */,
 				187746462C1B245700D824A5 /* CoinAppApp.swift */,
-				187746482C1B245700D824A5 /* ContentView.swift */,
 				1877464A2C1B245800D824A5 /* Assets.xcassets */,
 				1877464C2C1B245800D824A5 /* Preview Content */,
 			);
@@ -137,7 +175,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				187746492C1B245700D824A5 /* ContentView.swift in Sources */,
+				181742C42C391A63000C954D /* CryptoModel.swift in Sources */,
+				187746492C1B245700D824A5 /* MainView.swift in Sources */,
+				181742C62C39422A000C954D /* WebService.swift in Sources */,
 				187746472C1B245700D824A5 /* CoinAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
