@@ -9,15 +9,13 @@ import Foundation
 
 class WebService{
     
-    func downloadCurrencies(completion: @escaping (Result<[CryptoModel]?,DownloaderError>) -> Void ){
-        
-        let url = URL(string: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")!
+    func downloadCurrencies(url: URL, apiKey: String,completion: @escaping (Result<[CryptoModel]?,DownloaderError>) -> Void ){
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.timeoutInterval = 10
         request.allHTTPHeaderFields = [
           "accept": "application/json",
-          "x-cg-demo-api-key": "CG-oTX7ejhbcFLSWLBCwjsb4tUk"
+          "x-cg-demo-api-key": apiKey
         ]
         
         URLSession.shared.dataTask(with: request) { data, response, error in
