@@ -6,39 +6,53 @@
 //
 
 import Foundation
+import SwiftUI
 
 class WebService{
     
-    func downloadCurrencies(url: URL, apiKey: String,completion: @escaping (Result<[CryptoModel]?,DownloaderError>) -> Void ){
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.timeoutInterval = 10
-        request.allHTTPHeaderFields = [
-          "accept": "application/json",
-          "x-cg-demo-api-key": apiKey
-        ]
+    func downloadCurrencies(url: String, completion: @escaping (Result<[CryptoModel]?,DownloaderError>) -> Void ){
+        if let url = URL(string: url){
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if data != nil{
+                    do{
+                        let decodedData = try JSONDecoder().decode([CryptoModel].self, from: data!)
+                        completion(.success(decodedData))
+                       
+                    }catch{
+                        print(error)
+                        completion(.failure(.dataParseError))
+                    }
+                }
+                
+            }.resume()
+        }
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error{
-                completion(.failure(.badUrl))
-                print(error.localizedDescription)
-            }
-            
-            guard let data = data, error == nil else{
-                print(error?.localizedDescription)
-                return completion(.failure(.noData))
-            }
-            guard let currencies = try? JSONDecoder().decode([CryptoModel].self, from: data) else{
-                print(error?.localizedDescription)
-                return completion(.failure(.dataParseError))
-            }
-            completion(.success(currencies))
-            
-        }.resume()
-        
-            
         
     }
+                
+                /*if let error = error{
+                    print(error.localizedDescription)
+                    //completion(.failure(.badUrl))
+                }
+                guard let data = data, error == nil else{
+                    return completion(.failure(.noData))
+                }
+                /*guard let currencies = try? JSONDecoder().decode([CryptoModel].self, from: data) else{
+                    return completion(.failure(.dataParseError))
+                }*/
+                do{
+                    print(data)
+                    let decodedData = try? JSONDecoder().decode([CryptoModel].self, from: data)
+                    print(decodedData)
+                }catch{
+                    print(error.localizedDescription)
+                }
+               */
+               
+                //completion(.success(currencies as! [CryptoModel]))
+                
+                
+            //}.resume()
     
     enum DownloaderError: Error{
         case badUrl

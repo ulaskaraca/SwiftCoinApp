@@ -9,7 +9,7 @@ import Foundation
 
 struct CryptoViewModel{
     let crypto: CryptoModel
-    var id: String{
+    var id: UUID?{
         crypto.id
     }
     var name: String{
@@ -18,33 +18,31 @@ struct CryptoViewModel{
     var image: String{
         crypto.image
     }
-    var current_price:Int{
+    var current_price:Double{
         crypto.current_price
     }
+}
     
-    class CryptoListViewModel: ObservableObject{
-        let webservice = WebService()
-        let url = URL(string: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")!
-        let apiKey = "CG-oTX7ejhbcFLSWLBCwjsb4tUk"
-        @Published var cryptoList = [CryptoViewModel]()
+class CryptoListViewModel: ObservableObject{
+    @Published var cryptoList = [CryptoViewModel]()
         
-        func downloadCryptos(){
-            webservice.downloadCurrencies(url: url, apiKey: apiKey) { result in
-                switch result{
-                case .failure(let error):
-                    print(error)
-                case .success(let cryptos):
-                    if let cryptos = cryptos{
-                        DispatchQueue.main.async{
-                            self.cryptoList = cryptos.map(CryptoViewModel.init)
-                        }
+    let webservice = WebService()
+    let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&x-cg-demo-api-key=CG-oTX7ejhbcFLSWLBCwjsb4tUk"
+        
+    func downloadCryptos(){
+        self.cryptoList.removeAll(keepingCapacity: false)
+        webservice.downloadCurrencies(url: url){ result in
+            switch result{
+            case .failure(let error):
+                print(error)
+            case .success(let cryptos):
+                if let cryptos = cryptos{
+                    DispatchQueue.main.async{
+                        self.cryptoList = cryptos.map(CryptoViewModel.init)
                     }
                 }
             }
         }
-        
-        
     }
-    
-    
+        
 }

@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct CryptoModel: Identifiable, Decodable{
-    let id: String
+struct CryptoModel: Hashable, Decodable, Identifiable{
+    let id = UUID()
     let name: String
     let image: String
-    let current_price: Int
+    let current_price: Double
 
 }

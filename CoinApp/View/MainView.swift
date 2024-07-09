@@ -7,21 +7,37 @@
 
 import SwiftUI
 
-struct MainView: View {
-    var webService = WebService()
-    var cryptoList = [CryptoModel]()
+struct MainView: View { 
+    @ObservedObject var cryptoListViewModel: CryptoListViewModel
+    
+    init() {
+        
+        self.cryptoListViewModel = CryptoListViewModel()
+        
+    }
+    
     var body: some View {
-        NavigationStack{
-            List(){
+        NavigationView{
+            List(cryptoListViewModel.cryptoList, id: \.id){ crypto in
                 HStack{
-                    Text("Image").padding(.horizontal)
-                    Text("Name")
+                    AsyncImage(url: URL(string: crypto.image)){result in
+                        result.image?
+                            .resizable()
+                            .scaledToFill()
+                    }.frame(width: 60, height: 60)
+                        .padding(.horizontal)
+                        
+                    
+                    Text(crypto.name)
                     Spacer()
-                    Text("Price").padding(.horizontal)
-                }.onTapGesture {
+                    Text(String(crypto.current_price)).padding(.horizontal)
                     
                 }
-            }.navigationTitle("Crypto")
+                
+            }
+            .onAppear(perform: {
+                cryptoListViewModel.downloadCryptos()
+            })
         }
     }
 }
