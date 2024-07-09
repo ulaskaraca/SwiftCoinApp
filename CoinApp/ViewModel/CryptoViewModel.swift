@@ -27,7 +27,7 @@ class CryptoListViewModel: ObservableObject{
     @Published var cryptoList = [CryptoViewModel]()
         
     let webservice = WebService()
-    let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&x-cg-demo-api-key=CG-oTX7ejhbcFLSWLBCwjsb4tUk"
+    let url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&x-cg-demo-api-key=[APIKEY]"
         
     func downloadCryptos(){
         self.cryptoList.removeAll(keepingCapacity: false)
